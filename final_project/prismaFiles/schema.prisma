@@ -1,0 +1,124 @@
+// Datasource configuration to connect to MongoDB database
+datasource db {
+  provider = "mongodb"  // Specifies MongoDB as the database provider
+  url      = env("DATABASE_URL")  // Database URL retrieved from environment variables (might need to add path here)
+}
+
+// Generator configuration to generate Prisma client for JavaScript/TypeScript
+generator client {
+  provider = "prisma-client-js"  // Specifies Prisma client provider 
+}
+
+// Model for account information
+model Account {
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId  // Primary key, auto-generated
+  userId             String  @db.ObjectId  // Foreign key referencing User model
+  type               String  // Type of account
+  provider           String  // Account provider (e.g., Google, Facebook)
+  providerAccountId  String  // Provider account ID
+  refresh_token      String? @db.String  // Optional refresh token
+  access_token       String? @db.String  // Optional access token
+  expires_at         Int?  // Expiration time of the token
+  token_type         String?  // Type of token
+  scope              String?  // Scope of the access
+  id_token           String? @db.String  // Optional ID token
+  session_state      String?  // Optional session state
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)  // Relation to User model
+
+  @@unique([provider, providerAccountId])  // Unique constraint on provider and providerAccountId combination
+}
+
+// Model for User information
+model Customer {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId  // Primary key, auto-generated
+  name           String?  // Optional user name
+  email          String? @unique  // Optional and unique email
+  emailVerified  DateTime?  // Optional email verification timestamp
+  image          String?  // Optional user image URL
+  hashedPassword String?  // Optional hashed password
+  createdAt      DateTime @default(now())  // Timestamp for record creation, defaults to current time
+  updateAt       DateTime @updatedAt  // Timestamp for record update
+  role           Role @default(CUSTOMER)  // User role (Customer/Artist) with default value Customer
+
+  accounts  Account[]  // Relation to Account model
+  orders    Order[]  // CUSTOMER orders array
+}
+
+// Model for product information
+model Product {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId  // Primary key, auto-generated
+  name        String  // Product name
+  description String  
+  Artist_Name String  
+  Size        String  // Product size
+  category    String  // (maybe remove catagory)
+  images      Image[]  // Array of images
+  inStock     Boolean  // Stock status
+  price       Float  
+}
+
+// Model for exhibition 
+model Exhibition {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId  // Primary key, auto-generated
+  name        String  // Product name
+  description String  
+  Artist_Name String  
+  images      Image[]  // Array of images
+  inStock     Boolean  // Stock status
+  price       Float  
+}
+
+
+// Model for orders
+model Order {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId  // Primary key, auto-generated
+  userId            String @db.ObjectId  // Foreign key referencing User model
+  amount            Int  // Order amount
+  currency          String  // Order currency (maybe set all to usd)
+  status            String  // Order status
+  deliveryStatus    String?  // Optional delivery status (remove if no need to follow this)
+  createDate        DateTime @default(now())  // Timestamp for record creation, defaults to current time
+  paymentIntentId   String @unique  // Unique payment intent ID
+  products          CartProductType[]  // Array of products in the cart
+  address           Address?  // Optional address
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)  // Relation to User model
+}
+
+// Custom type for cart product details
+type CartProductType {
+  id           String  
+  name         String  
+  description  String  
+  Artist_Name  String  
+  Size         String  
+  category     String  
+  currentImg  Image  
+  quantity     Int  
+  price        Float  
+}
+
+// Custom type for images
+type Image {
+  color     String  
+  colorCode String  
+  image     String  // Image URL
+  imageSize String
+}
+
+// Custom type for addresses
+type Address {
+  city        String  
+  country     String  
+  line1       String  
+  line2       String?  
+  postal_code String  
+  state       String 
+}
+
+// Enum type for user roles
+enum Role {
+  CUSTOMER  // Regular user
+  Artist  // Able to salee
+}
