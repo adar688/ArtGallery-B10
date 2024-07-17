@@ -52,7 +52,6 @@ model Product {
   description String  
   Artist_Name String  
   Size        String  // Product size
-  category    String  // (maybe remove catagory)
   images      Image[]  // Array of images
   inStock     Boolean  // Stock status
   price       Float  
@@ -93,7 +92,6 @@ type CartProductType {
   description  String  
   Artist_Name  String  
   Size         String  
-  category     String  
   currentImg  Image  
   quantity     Int  
   price        Float  
