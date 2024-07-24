@@ -1,7 +1,9 @@
 
+import Footer from "./components/Footer/Footer";
 import Button from "./components/General/Button";
 import DarkLightButthon from "./components/General/DarkLightButton";
 import HomeBanner from "./components/General/HomeBanner";
+
 
 function App() {
 
@@ -12,6 +14,9 @@ function App() {
             disabled={false} 
             onClick={()=>{}}></Button>
         <DarkLightButthon></DarkLightButthon>
+        <Footer></Footer>
+
+        
     </>
 
   );
