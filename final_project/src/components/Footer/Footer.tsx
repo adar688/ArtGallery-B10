@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             </p>
             <p>&copy; {new Date().getFullYear()} Artify. All rights reserved</p>
           </div>
-          <FooterList title="Follow Us">
+          {/* <FooterList title="Follow Us">
             <div className="flex gap-2">
               <Link href='#'><MdFacebook size={24} /></Link>
               <Link href='#'><AiFillTwitterCircle size={24} /></Link>
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
             <Link href='#'>Contact Us</Link>
             <Link href='#'>Shipping Policy</Link>
             <Link href='#'>Returns</Link>
-          </FooterList>
+          </FooterList> */}
 
           
           

@@ -3,7 +3,7 @@ import React from 'react';
 // Define the HomeBanner component
 const HomeBanner = () => {
   return (
-    <div className="relative bg-gray-900 text-white py-20 px-6 md:px-20">
+    <div className="relative py-20 px-6 md:px-20">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Text Content */}
         <div className="md:w-1/2 z-10 relative">

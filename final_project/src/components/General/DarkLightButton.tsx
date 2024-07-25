@@ -10,6 +10,7 @@ function DarkLightButthon() {
    // Function to toggle between light and dark themes
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
+    console.log(theme)
   };
 
   // Check if the current theme is dark mode

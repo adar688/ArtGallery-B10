@@ -19,9 +19,7 @@ export type CartProductType = {
     description: string;
     Artist_Name: string;
     Size: string;
-    category: string;
     selectedImg: SelectedImgType;
-    quantity: number;
     price: number;
 };
 
@@ -47,9 +45,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         description: product.description,
         Artist_Name: product.Artist_Name,
         Size: product.Size,
-        category: product.category,
         selectedImg: product.images && product.images.length > 0 ? { ...product.images[0] } : null,
-        quantity: 1,
         price: product.price
     });
 
@@ -82,10 +78,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                 <div className="text-base md:text-lg lg:text-xl text-justify mb-4">{product.Size}</div>
                 {/* Horizontal Divider */}
                 <Horizontal />
-                {/* Product Category */}
-                <div className="text-base md:text-lg lg:text-xl">
-                    <span className="font-semibold mb-2">Category: </span>{product.category}
-                </div>
                 {/* Unique Feature */}
                 <div className="text-base md:text-lg lg:text-xl text-justify flex items-center gap-2 md:underline"><IoMdEasel />{product.unique}</div>
                 {/* Shipping Information */}
