@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     <footer className=" text-sm mt-16 relative">
       {/* Elliptical background */}
       <div className="absolute inset-0 md:w-1/2">
-        <div className="Ellipse1 w-full h-full bg-gradient-to-br from-cyan-900 to-transparent bg-opacity-60 rounded-full blur-2xl"></div>
+        <div className="Ellipse1 w-full h-full bg-gradient-to-br  from-blue-600 to-sky-200 bg-opacity-20 rounded-full blur-3xl"></div>
       </div>
       {/* Content */}
       <Container>

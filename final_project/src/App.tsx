@@ -11,11 +11,8 @@ function App() {
   return (
     <>
     <DarkLightProvider >
-        <HomeBanner></HomeBanner>
-        <Button label={"hello"} 
-            disabled={false} 
-            onClick={()=>{}}></Button>
         <DarkLightButthon></DarkLightButthon>
+        <HomeBanner></HomeBanner>
         <Footer></Footer>
     </DarkLightProvider>
 
